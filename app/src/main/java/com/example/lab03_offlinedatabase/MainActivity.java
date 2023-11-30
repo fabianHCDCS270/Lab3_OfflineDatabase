@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,, CreateBiodataActivity.class);
+                Intent intent = new Intent(MainActivity.this, CreateBiodataActivity.class);
                 startActivity(intent);
             }
         });
@@ -86,12 +86,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
+    //@Override
+    //public boolean onSupportNavigateUp() {
+    //    NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+    //    return NavigationUI.navigateUp(navController, appBarConfiguration)
+    //            || super.onSupportNavigateUp();
+    //}
     public void RefreshList() {
         SQLiteDatabase db = dbcenter.getReadableDatabase();
         cursor = db.rawQuery("SELECT * FROM biodata", null);

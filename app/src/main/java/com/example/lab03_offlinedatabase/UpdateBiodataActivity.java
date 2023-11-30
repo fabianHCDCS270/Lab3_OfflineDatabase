@@ -18,24 +18,22 @@ public class UpdateBiodataActivity extends AppCompatActivity {
     Button ton1, ton2;
     EditText text2, text3, text4, text5;
     TextView text1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_biodata);
 
         dbHelper = new DataHelper(this);
-        text1 = (EditText) findViewById(R.id.editText1);
+        text1 = (TextView) findViewById(R.id.editText1);
         text2 = (EditText) findViewById(R.id.editText2);
         text3 = (EditText) findViewById(R.id.editText3);
         text4 = (EditText) findViewById(R.id.editText4);
         text5 = (EditText) findViewById(R.id.editText5);
-
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        cursor = db.rawQuery("SELECT * FROM biodata WHERE name = '" +
-                getIntent().getStringExtra("name")
-                + "'", null);
+        cursor = db.rawQuery("SELECT * FROM biodata WHERE name = '" + getIntent().getStringExtra("name") + "'", null);
         cursor.moveToFirst();
-        if(cursor.getCount()>0){
+        if (cursor.getCount() > 0) {
             cursor.moveToPosition(0);
             text1.setText(cursor.getString(0).toString());
             text2.setText(cursor.getString(1).toString());
@@ -45,21 +43,18 @@ public class UpdateBiodataActivity extends AppCompatActivity {
         }
         ton1 = (Button) findViewById(R.id.button1);
         ton2 = (Button) findViewById(R.id.button2);
-
         ton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
-                db.execSQL("update biodata set name='"+
-                        text2.getText().toString() + "', dob=''" +
-                        text3.getText().toString() + "', gender=''" +
-                        text4.getText().toString() + "', address=''" +
-                        text5.getText().toString() + "', where no=''" +
-                        text1.getText().toString() + "'");
+                db.execSQL("update biodata set name='" + text2.getText().toString() + "', dob='" + text3.getText().toString() + "', gender='" + text4.getText().toString() + "', address='" + text5.getText().toString() + "' where no='" + text1.getText().toString() + "'");
                 Toast.makeText(getApplicationContext(), "Data Successfully Updated", Toast.LENGTH_SHORT).show();
                 MainActivity.ma.RefreshList();
-                finish(); }
+                finish();
+            }
+
         });
+
         ton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -67,5 +62,4 @@ public class UpdateBiodataActivity extends AppCompatActivity {
             }
         });
 
-    }
-}
+    }}

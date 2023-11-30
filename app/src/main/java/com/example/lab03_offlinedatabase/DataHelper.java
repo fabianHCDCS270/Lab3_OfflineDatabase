@@ -1,5 +1,6 @@
 package com.example.lab03_offlinedatabase;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -7,6 +8,9 @@ import android.util.Log;
 public class DataHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "personalbiodata.db";
     private static final int DATABASE_VERSION = 1;
+    public DataHelper(Context context){
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
 
     public void onCreate(SQLiteDatabase db) {
         String sql = "create table biodata(no integer primary key, name text null, dob text null, gender textnull, address text null);";

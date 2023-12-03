@@ -22,11 +22,11 @@ public class ViewBiodataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_biodata);
 
         dbHelper = new DataHelper(this);
-        text1 = (EditText) findViewById(R.id.editText1);
-        text2 = (EditText) findViewById(R.id.editText2);
-        text3 = (EditText) findViewById(R.id.editText3);
-        text4 = (EditText) findViewById(R.id.editText4);
-        text5 = (EditText) findViewById(R.id.editText5);
+        text1 = (TextView) findViewById(R.id.textView1);
+        text2 = (TextView) findViewById(R.id.textView2);
+        text3 = (TextView) findViewById(R.id.textView3);
+        text4 = (TextView) findViewById(R.id.textView4);
+        text5 = (TextView) findViewById(R.id.textView5);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         cursor = db.rawQuery("SELECT * FROM biodata WHERE name = '" +
                 getIntent().getStringExtra("name")

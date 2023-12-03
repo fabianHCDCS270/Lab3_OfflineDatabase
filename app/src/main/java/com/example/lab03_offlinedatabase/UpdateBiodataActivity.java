@@ -30,9 +30,11 @@ public class UpdateBiodataActivity extends AppCompatActivity {
         text3 = (EditText) findViewById(R.id.editText3);
         text4 = (EditText) findViewById(R.id.editText4);
         text5 = (EditText) findViewById(R.id.editText5);
+
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         cursor = db.rawQuery("SELECT * FROM biodata WHERE name = '" + getIntent().getStringExtra("name") + "'", null);
         cursor.moveToFirst();
+
         if (cursor.getCount() > 0) {
             cursor.moveToPosition(0);
             text1.setText(cursor.getString(0).toString());
@@ -47,7 +49,12 @@ public class UpdateBiodataActivity extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
-                db.execSQL("update biodata set name='" + text2.getText().toString() + "', dob='" + text3.getText().toString() + "', gender='" + text4.getText().toString() + "', address='" + text5.getText().toString() + "' where no='" + text1.getText().toString() + "'");
+                db.execSQL("update biodata set name='" +
+                        text2.getText().toString() + "', dob='" +
+                        text3.getText().toString() + "', gender='" +
+                        text4.getText().toString() + "', address='" +
+                        text5.getText().toString() + "' where no='" +
+                        text1.getText().toString() + "'");
                 Toast.makeText(getApplicationContext(), "Data Successfully Updated", Toast.LENGTH_SHORT).show();
                 MainActivity.ma.RefreshList();
                 finish();
